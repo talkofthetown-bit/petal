@@ -241,6 +241,58 @@ footer nav a:hover{color:#fff}
 .hcard[aria-pressed="true"]{background:var(--leaf-s);border-color:var(--leaf);box-shadow:0 4px 0 var(--leaf)}
 @media (max-width:900px){.pt-flower{min-height:380px}.pt-flower .fox{width:min(380px,100%);margin-right:0}.pt-flower:before{width:320px;height:320px;right:0}.hero.pt{padding-top:36px}}
 @media (max-width:480px){.hcard{font-size:13px;padding:12px 6px}}
+
+/* bento hero */
+.hero.bn{background:var(--cream);padding:48px 0 70px}
+.hero.bn .wrap{display:block}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.bt{border-radius:36px;position:relative;overflow:hidden}
+.bt.main{grid-column:1/8;background:#F0518A;color:#fff;padding:44px;box-shadow:0 8px 0 #C22E68}
+.bt.main h1{color:#fff;font-size:clamp(40px,5.4vw,68px)}.bt.main em{color:#FFE3A8}
+.bt.main .eyebrow{color:#FFD9E7}.bt.main p.lead{color:#FFE9F1;margin:20px 0 26px}
+.btn.white{background:#fff;color:#C22E68;box-shadow:0 5px 0 #F7BBD0}.btn.white:active{box-shadow:0 1px 0 #F7BBD0}
+.btn.ghostw{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #FFC0D6}.btn.ghostw:active{box-shadow:inset 0 0 0 2px #FFC0D6}
+.bt.flo{grid-column:8/13;grid-row:1/3;background:#EADFFF;min-height:520px;display:grid;place-items:center;box-shadow:0 8px 0 #CDB8F3}
+.bt.flo .fox{width:min(420px,112%);margin-top:20px}
+.bt.flo .bub.one{left:6%;top:6%}.bt.flo .bub.two{right:6%;left:auto;bottom:6%;max-width:70%}.bt.flo .bub{z-index:3}
+.minis{grid-column:1/8;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mini{border:0;border-radius:28px;padding:22px 20px;text-align:left;cursor:pointer;font-family:'Nunito',sans-serif;color:var(--ink);box-shadow:0 6px 0 rgba(59,26,43,.15);transition:transform .08s}
+.mini b{display:block;font:800 46px 'Fraunces',serif;line-height:1;color:var(--ink)}
+.mini span{display:block;font-weight:800;font-size:15px;margin-top:6px}
+.mini:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(59,26,43,.15)}
+.mini[aria-pressed="true"]{outline:4px solid var(--ink);outline-offset:-4px}
+/* big number rows */
+.hrows{border-top:2px solid var(--line)}
+.hrow{display:grid;grid-template-columns:200px 1fr auto;gap:30px;align-items:center;padding:32px 0;border-bottom:2px solid var(--line)}
+.hrow .big{font:800 clamp(64px,9vw,112px)/1 'Fraunces',serif;color:var(--fox-d);letter-spacing:-.04em}
+.hrow h3{font-size:28px;margin-bottom:8px}.hrow p{color:var(--muted);max-width:34em}
+.hrow .when{background:var(--fox-s);color:var(--fox-d);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+/* stepper */
+.sc{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:stretch}
+.sc-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;align-content:start}
+.sc-step{width:100%;display:flex;align-items:center;gap:14px;text-align:left;border:2px solid var(--line);background:#fff;border-radius:20px;padding:16px 18px;font:800 19px 'Nunito',sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 var(--line)}
+.sc-step i{flex:none;width:34px;height:34px;border-radius:50%;background:var(--cream2);display:grid;place-items:center;font-style:normal;font-size:15px}
+.sc-step.on{background:var(--leaf-s);border-color:var(--leaf);box-shadow:0 4px 0 var(--leaf)}.sc-step.on i{background:var(--leaf);color:#fff}
+.sc-step.done i{background:var(--ok);color:#fff}
+.sc-panel{background:#FFE5CF;border-radius:34px;padding:38px;box-shadow:0 8px 0 #F2C79F;display:flex;flex-direction:column;gap:12px;min-height:380px}
+.sc-art{font-size:84px;line-height:1}
+.sc-panel h3{font-size:36px}.sc-panel p{color:#6B4630;font-size:19px;max-width:30em}
+.sc-panel .btn{align-self:flex-start;margin-top:auto}
+.sc-panel .q-tag{color:var(--fox-d)}
+.sc-panel .done-card{margin:auto;padding:0}
+/* tips (light) */
+.tipsec{background:#EADFFF;padding:96px 0}
+.tipsec .num{background:#fff;border:2px solid #D8C8F7}.tipsec .num b{color:var(--fox-d)}.tipsec .num span{color:var(--muted)}
+.tipsec .tipcard{box-shadow:0 8px 0 #1F0F1B}
+/* signs as list */
+.signs{grid-template-columns:repeat(2,1fr);gap:14px 40px}
+.sign{background:transparent;border:0;border-left:5px solid var(--leaf);border-radius:0;box-shadow:none;padding:6px 0 6px 20px}
+@media (max-width:900px){
+ .bento{grid-template-columns:1fr}.bt.main,.bt.flo,.minis{grid-column:1;grid-row:auto}.bt.main{padding:30px}.bt.flo{min-height:400px}
+ .hrow{grid-template-columns:1fr;gap:10px;padding:26px 0}.sc{grid-template-columns:1fr}.signs{grid-template-columns:1fr}
+ .hero.bn{padding-top:28px}
+}
+@media (max-width:480px){.mini b{font-size:34px}.mini{padding:16px 12px;border-radius:22px}.mini span{font-size:13px}.minis{gap:10px}.sc-panel{padding:26px}}
 </style></head><body>
 <header class="nav" id="nav"><div class="wrap">
  <a class="logo" href="#top" aria-label="Petal home"><span data-pet="static" style="display:block;width:40px;height:40px"></span>petal</a>
@@ -252,45 +304,37 @@ footer nav a:hover{color:#fff}
 </div></header>
 
 <main id="top">
-<section class="hero pt"><div class="wrap">
- <div>
-  <div class="eyebrow">Breast health, made easy</div>
-  <h1>Look after yourself, <em>gently.</em></h1>
-  <p class="lead">A monthly check, a yearly mammogram and one small tip a day. Petal keeps track so you do not have to, and cheers you on the whole way.</p>
-  <div class="cta"><a class="btn" href="#join">Get reminders</a><a class="btn line" href="#check">Try a self check</a></div>
-  <div class="langs"><small>Tap one and Petal will tell you more</small>
-   <div class="hcards" id="chips" role="group" aria-label="Pick a habit"></div></div>
- </div>
- <div class="pt-flower" aria-label="Petal the flower">
-  <div class="bub one" id="hello" aria-live="polite">Hi, you!</div>
-  <div class="fox" id="heroPet" role="img" aria-label="Petal, a friendly pink flower mascot"></div>
-  <div class="bub two" id="hellosub">Ready for a quick check-in?</div>
+<section class="hero bn"><div class="wrap">
+ <div class="bento">
+  <div class="bt main">
+   <div class="eyebrow">Breast health, made easy</div>
+   <h1>Look after yourself, <em>gently.</em></h1>
+   <p class="lead">A monthly check, a yearly mammogram and one small tip a day. Petal keeps track so you do not have to, and cheers you on the whole way.</p>
+   <div class="cta"><a class="btn white" href="#join">Get reminders</a><a class="btn ghostw" href="#check">Try a self check</a></div>
+  </div>
+  <div class="bt flo" aria-label="Petal the flower">
+   <div class="bub one" id="hello" aria-live="polite">Hi, you!</div>
+   <div class="fox" id="heroPet" role="img" aria-label="Petal, a friendly pink flower mascot"></div>
+   <div class="bub two" id="hellosub">Ready for a quick check-in?</div>
+  </div>
+  <div class="minis" id="chips" role="group" aria-label="Pick a habit"></div>
  </div>
 </div></section>
 
 <section class="alt" id="habits"><div class="wrap">
  <div class="head"><div class="eyebrow">Three small habits</div><h2>Easy to start. <em>Easy to keep.</em></h2><p>Catching changes early gives you the best chance. These three habits take almost no time.</p></div>
- <div class="habits">
-  <div class="pcard habit"><div class="ic" style="background:#FFD9E7">🪞</div><h3>Monthly self check</h3><p>Five minutes, once a month. Get to know how your breasts normally look and feel, so you spot anything new fast.</p><span class="when">Every month</span></div>
-  <div class="pcard habit"><div class="ic" style="background:#EADFFF">🩺</div><h3>Yearly mammogram</h3><p>A screening scan that can find changes before you can feel them. Petal reminds you to book it and keeps your dates in one place.</p><span class="when">Ask your doctor when to start</span></div>
-  <div class="pcard habit"><div class="ic" style="background:#FFE5CF">🌸</div><h3>Daily tip</h3><p>One small habit linked to lower risk, like a walk or a glass of water instead of a drink. Tick it off and keep your streak.</p><span class="when">Every day</span></div>
+ <div class="hrows">
+  <div class="hrow"><div class="big">12</div><div class="ht"><h3>Self checks a year</h3><p>Five minutes, once a month. Get to know how your breasts normally look and feel, so you spot anything new fast.</p></div><span class="when">Every month</span></div>
+  <div class="hrow"><div class="big">1</div><div class="ht"><h3>Mammogram a year</h3><p>A screening scan that can find changes before you can feel them. Petal reminds you to book it and keeps your dates in one place.</p></div><span class="when">Ask your doctor when to start</span></div>
+  <div class="hrow"><div class="big">365</div><div class="ht"><h3>Tiny tips a year</h3><p>One small habit linked to lower risk, like a walk or a glass of water instead of a drink. Tick it off and keep your streak.</p></div><span class="when">Every day</span></div>
  </div>
 </div></section>
 
-<section id="check"><div class="wrap lesson-grid">
- <div class="lesson-copy">
-  <div class="eyebrow">Try it right now</div>
-  <h2>A self check in <em>four easy steps.</em></h2>
-  <p style="color:var(--muted);margin-top:16px">Tap through the guide. Pick a day each month, like the first Sunday, and make it a habit. There is no wrong way to start.</p>
-  <ul>
-   <li><span class="tick">✓</span><span><b>Know your normal.</b> Everyone is different. You are looking for what is new for you.</span></li>
-   <li><span class="tick">✓</span><span><b>Takes five minutes.</b> In the mirror, in the shower, or lying down.</span></li>
-   <li><span class="tick">✓</span><span><b>Changes are not a verdict.</b> Most are not cancer. Get anything new checked anyway.</span></li>
-  </ul>
- </div>
- <div class="phone" id="phone">
-  <div class="ph-top"><div class="bar"><i id="prog"></i></div><div class="hearts" id="step">1 / 4</div></div>
-  <div id="gbox"></div>
+<section id="check"><div class="wrap">
+ <div class="head"><div class="eyebrow">Try it right now</div><h2>A self check in <em>four easy steps.</em></h2><p>Pick a day each month, like the first Sunday, and make it a habit. Know your normal, and look for what is new for you. Most changes are not cancer, but get anything new checked.</p></div>
+ <div class="sc">
+  <ol class="sc-list" id="sclist"></ol>
+  <div class="sc-panel" id="scp" aria-live="polite"></div>
  </div>
 </div></section>
 
@@ -314,18 +358,14 @@ footer nav a:hover{color:#fff}
  </div>
 </div></section>
 
-<section class="dark" id="tips"><div class="wrap streak">
- <div>
-  <div class="eyebrow">Daily tips</div>
-  <h2>Small habits that may <em>lower your risk.</em></h2>
-  <p style="color:#F0D5E3;margin-top:18px">One tip a day. Do it, tick it, and watch your streak grow. Nothing guarantees prevention, but healthy habits help, and they feel good too.</p>
-  <div class="nums" style="margin-top:28px">
-   <div class="num"><b id="streak">0</b><span>day streak</span></div>
-   <div class="num"><b>1</b><span>tip a day</span></div>
-   <div class="num"><b>5 min</b><span>or less</span></div>
-  </div>
+<section class="tipsec" id="tips"><div class="wrap">
+ <div class="head" style="text-align:center;margin-inline:auto"><div class="eyebrow">Daily tips</div><h2>Small habits that may <em>lower your risk.</em></h2><p>One tip a day. Do it, tick it, and watch your streak grow. Nothing guarantees prevention, but healthy habits help, and they feel good too.</p></div>
+ <div class="tipcard" id="tipcard" aria-live="polite" style="max-width:720px;margin:0 auto"></div>
+ <div class="nums" style="max-width:720px;margin:22px auto 0">
+  <div class="num"><b id="streak">0</b><span>day streak</span></div>
+  <div class="num"><b>1</b><span>tip a day</span></div>
+  <div class="num"><b>5 min</b><span>or less</span></div>
  </div>
- <div class="tipcard" id="tipcard" aria-live="polite"></div>
 </div></section>
 
 <section id="signs"><div class="wrap">
@@ -385,11 +425,11 @@ function pet(anim){var p='';for(var i=0;i<8;i++)p+='<ellipse cx="100" cy="44" rx
  +'<path d="M88 112Q100 126 112 112" stroke="#3B1A2B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>'}
 $('#heroPet').innerHTML=pet(true);
 [].forEach.call(document.querySelectorAll('[data-pet]'),function(e){e.innerHTML=pet(false)});
-/* hero chips */
-var H=[['Self check','Hi, you!','Ready for a quick check-in?','🪞'],['Mammogram','Time to book?','A yearly scan, on your calendar.','🩺'],['Daily tip','One tiny thing.','Today: a ten minute walk.','🌸']];
+/* hero tiles */
+var H=[['12','self checks a year','Hi, you!','Ready for a quick check-in?','#FFE5CF'],['1','mammogram a year','Time to book?','A yearly scan, on your calendar.','#EADFFF'],['365','tiny tips a year','One tiny thing.','Today: a ten minute walk.','#D9F5EA']];
 var chips=$('#chips');
-H.forEach(function(g,i){var b=document.createElement('button');b.className='hcard';b.type='button';b.innerHTML='<span aria-hidden="true">'+g[3]+'</span>'+g[0];b.setAttribute('aria-pressed',i===0?'true':'false');
- b.onclick=function(){[].forEach.call(chips.children,function(c){c.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');$('#hello').textContent=g[1];$('#hellosub').textContent=g[2]};chips.appendChild(b)});
+H.forEach(function(g,i){var b=document.createElement('button');b.className='mini';b.type='button';b.style.background=g[4];b.innerHTML='<b>'+g[0]+'</b><span>'+g[1]+'</span>';b.setAttribute('aria-pressed',i===0?'true':'false');
+ b.onclick=function(){[].forEach.call(chips.children,function(c){c.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');$('#hello').textContent=g[2];$('#hellosub').textContent=g[3]};chips.appendChild(b)});
 /* guide */
 var S=[
  {t:'Look in the mirror',d:'Stand with your arms relaxed by your sides. Then raise them overhead. Look at the shape, size and colour of each breast, and at the skin and nipples.',e:'🪞'},
@@ -397,16 +437,16 @@ var S=[
  {t:'Feel lying down',d:'Lie on your back with one arm behind your head. Repeat the same small circles on that side, then swap. Lying flat spreads the tissue so it is easier to feel.',e:'🛏️'},
  {t:'Know what to do',d:'Noticed something new, like a lump, dimpling or fluid? Do not panic and do not wait. Book a visit with your doctor. Most changes are not cancer, but you deserve to be sure.',e:'💗'}
 ];
-var gi=0,gbox=$('#gbox');
+var gi=0,fin=false,sl=$('#sclist'),sp=$('#scp');
 function guide(){
- if(gi>=S.length){
-  $('#prog').style.width='100%';$('#step').textContent='Done';
-  gbox.innerHTML='<div class="ph-body"><div class="done-card"><div style="width:150px;margin:0 auto">'+pet(true)+'</div><h3>Check done!</h3><p style="color:var(--muted)">Petal logged it for this month. Nicely done.</p><div class="xp"><span>🌸 1 check</span><span>🔥 1 month streak</span></div></div></div><div class="foot"><button class="btn" id="again">Go again</button></div>';
-  $('#again').onclick=function(){gi=0;guide()};return}
- var s=S[gi],dots='';for(var i=0;i<S.length;i++)dots+='<i class="'+(i<=gi?'on':'')+'"></i>';
- $('#prog').style.width=(gi/S.length*100)+'%';$('#step').textContent=(gi+1)+' / '+S.length;
- gbox.innerHTML='<div class="ph-body"><div class="q-tag">Step '+(gi+1)+'</div><div class="q">'+s.t+'</div><div class="guide-art"><span style="font-size:70px;line-height:1.2" aria-hidden="true">'+s.e+'</span></div><p style="color:var(--muted)">'+s.d+'</p></div><div class="foot"><div class="dots">'+dots+'</div><button class="btn" id="nx">'+(gi===S.length-1?'Finish':'Next')+'</button></div>';
- $('#nx').onclick=function(){gi++;guide()};
+ sl.innerHTML='';
+ S.forEach(function(s,i){var li=document.createElement('li'),b=document.createElement('button');b.type='button';b.className='sc-step'+((i===gi&&!fin)?' on':'')+((i<gi||fin)?' done':'');
+  b.innerHTML='<i>'+((i<gi||fin)?'✓':(i+1))+'</i>'+s.t;b.onclick=function(){fin=false;gi=i;guide()};li.appendChild(b);sl.appendChild(li)});
+ if(fin){sp.innerHTML='<div class="done-card"><div style="width:150px;margin:0 auto">'+pet(true)+'</div><h3>Check done!</h3><p style="color:var(--muted)">Petal logged it for this month. Nicely done.</p><div class="xp"><span>🌸 1 check</span><span>🔥 1 month streak</span></div><button class="btn" id="again" type="button">Go again</button></div>';
+  $('#again').onclick=function(){fin=false;gi=0;guide()};return}
+ var s=S[gi];
+ sp.innerHTML='<div class="sc-art" aria-hidden="true">'+s.e+'</div><div class="q-tag">Step '+(gi+1)+' of '+S.length+'</div><h3>'+s.t+'</h3><p>'+s.d+'</p><button class="btn" id="nx" type="button">'+(gi===S.length-1?'Finish':'Next step')+'</button>';
+ $('#nx').onclick=function(){if(gi===S.length-1){fin=true}else gi++;guide()};
 }
 guide();
 /* year */
