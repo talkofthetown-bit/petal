@@ -18,8 +18,8 @@ em{font-style:italic;color:var(--fox-d)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:18px;padding:15px 28px;font:800 16px 'Nunito',sans-serif;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;background:var(--leaf);color:#fff;box-shadow:0 5px 0 var(--leaf-d);transition:transform .08s,box-shadow .08s}
 .btn:hover{filter:brightness(1.05)}
 .btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--leaf-d)}
-.btn.fox{background:var(--fox);box-shadow:0 5px 0 var(--fox-d)}
-.btn.fox:active{box-shadow:0 1px 0 var(--fox-d)}
+.btn.orange{background:var(--fox);box-shadow:0 5px 0 var(--fox-d)}
+.btn.orange:active{box-shadow:0 1px 0 var(--fox-d)}
 .btn.line{background:#fff;color:var(--sky-d);box-shadow:0 5px 0 var(--line),inset 0 0 0 2px var(--line)}
 .btn.line:active{box-shadow:0 1px 0 var(--line),inset 0 0 0 2px var(--line)}
 .btn.sm{padding:11px 20px;font-size:14px;border-radius:14px;box-shadow:0 4px 0 var(--leaf-d)}
@@ -227,6 +227,20 @@ footer nav a:hover{color:#fff}
 .note{background:var(--leaf-s);border:2px solid var(--leaf);border-radius:22px;padding:22px 26px;font-weight:700}
 @media (max-width:900px){.habits,.signs,.two{grid-template-columns:1fr}.months{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:480px){.months{grid-template-columns:repeat(3,1fr)}}
+
+.hero.pt{background:linear-gradient(160deg,#FFDCE9 0,#FFEEF5 55%,#FFF6F9 100%);padding:70px 0 90px}
+.hero.pt .wrap{grid-template-columns:1.05fr .95fr}
+.pt-flower{position:relative;display:grid;place-items:center;min-height:480px}
+.pt-flower:before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:#FFC9DD;opacity:.6;right:-18%;top:50%;transform:translateY(-50%)}
+.pt-flower .fox{width:min(520px,118%);margin-right:-16%;z-index:2}
+.pt-flower .bub{z-index:3}.pt-flower .bub.one{left:0;top:6%}.pt-flower .bub.two{right:auto;left:6%;bottom:6%;max-width:60%}
+.hcards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hcard{border:2px solid var(--line);background:#fff;border-radius:20px;padding:14px 10px;font:800 15px 'Nunito',sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 var(--line);display:grid;gap:6px;place-items:center;text-align:center}
+.hcard span{font-size:26px;line-height:1}
+.hcard:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.hcard[aria-pressed="true"]{background:var(--leaf-s);border-color:var(--leaf);box-shadow:0 4px 0 var(--leaf)}
+@media (max-width:900px){.pt-flower{min-height:380px}.pt-flower .fox{width:min(380px,100%);margin-right:0}.pt-flower:before{width:320px;height:320px;right:0}.hero.pt{padding-top:36px}}
+@media (max-width:480px){.hcard{font-size:13px;padding:12px 6px}}
 </style></head><body>
 <header class="nav" id="nav"><div class="wrap">
  <a class="logo" href="#top" aria-label="Petal home"><span data-pet="static" style="display:block;width:40px;height:40px"></span>petal</a>
@@ -238,18 +252,17 @@ footer nav a:hover{color:#fff}
 </div></header>
 
 <main id="top">
-<section class="hero"><div class="wrap">
+<section class="hero pt"><div class="wrap">
  <div>
   <div class="eyebrow">Breast health, made easy</div>
   <h1>Look after yourself, <em>gently.</em></h1>
   <p class="lead">A monthly check, a yearly mammogram and one small tip a day. Petal keeps track so you do not have to, and cheers you on the whole way.</p>
   <div class="cta"><a class="btn" href="#join">Get reminders</a><a class="btn line" href="#check">Try a self check</a></div>
-  <div class="langs"><small>Petal reminds you about</small>
-   <div class="chips" id="chips" role="group" aria-label="Pick a habit"></div></div>
+  <div class="langs"><small>Tap one and Petal will tell you more</small>
+   <div class="hcards" id="chips" role="group" aria-label="Pick a habit"></div></div>
  </div>
- <div class="stage" aria-label="Petal the flower">
+ <div class="pt-flower" aria-label="Petal the flower">
   <div class="bub one" id="hello" aria-live="polite">Hi, you!</div>
-  <div class="pop">+1 check</div>
   <div class="fox" id="heroPet" role="img" aria-label="Petal, a friendly pink flower mascot"></div>
   <div class="bub two" id="hellosub">Ready for a quick check-in?</div>
  </div>
@@ -349,7 +362,7 @@ footer nav a:hover{color:#fff}
   <label for="em">Email</label><input id="em" type="email" placeholder="you@email.com" autocomplete="email" required>
   <label for="dy">Remind me on</label>
   <select id="dy"><option>The 1st of the month</option><option>The first Sunday</option><option>The 15th</option><option>The last day of the month</option></select>
-  <button class="btn fox" type="submit">Get reminders</button>
+  <button class="btn orange" type="submit">Get reminders</button>
   <div id="err" style="color:#FFB4B4;font-weight:800;min-height:1.2em" role="alert"></div>
   <div class="ok" id="ok"><div class="foxsmall" data-pet="static"></div><h3>You are all set!</h3><p style="color:#F0D5E3">Petal will see you next month. Be kind to yourself.</p></div>
  </form>
@@ -373,9 +386,9 @@ function pet(anim){var p='';for(var i=0;i<8;i++)p+='<ellipse cx="100" cy="44" rx
 $('#heroPet').innerHTML=pet(true);
 [].forEach.call(document.querySelectorAll('[data-pet]'),function(e){e.innerHTML=pet(false)});
 /* hero chips */
-var H=[['Self check','Hi, you!','Ready for a quick check-in?'],['Mammogram','Time to book?','A yearly scan, on your calendar.'],['Daily tip','One tiny thing.','Today: a ten minute walk.']];
+var H=[['Self check','Hi, you!','Ready for a quick check-in?','🪞'],['Mammogram','Time to book?','A yearly scan, on your calendar.','🩺'],['Daily tip','One tiny thing.','Today: a ten minute walk.','🌸']];
 var chips=$('#chips');
-H.forEach(function(g,i){var b=document.createElement('button');b.className='chip';b.type='button';b.textContent=g[0];b.setAttribute('aria-pressed',i===0?'true':'false');
+H.forEach(function(g,i){var b=document.createElement('button');b.className='hcard';b.type='button';b.innerHTML='<span aria-hidden="true">'+g[3]+'</span>'+g[0];b.setAttribute('aria-pressed',i===0?'true':'false');
  b.onclick=function(){[].forEach.call(chips.children,function(c){c.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');$('#hello').textContent=g[1];$('#hellosub').textContent=g[2]};chips.appendChild(b)});
 /* guide */
 var S=[
