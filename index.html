@@ -1,0 +1,420 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Petal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,600..800,0..100;1,9..144,600..800,0..100&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--fox:#FF7BAA;--fox-d:#D94B84;--fox-s:#FFE0EC;--cream:#FFF6F9;--cream2:#FFE9F1;--ink:#3B1A2B;--muted:#85586E;--line:#F7D5E2;--leaf:#F0518A;--leaf-d:#C22E68;--leaf-s:#FFE3EE;--sky:#EADFFF;--sky-d:#7F57E0;--plum:#3A1630;--plum2:#552545;--sun:#FFC9A0;--ok:#3DBE8B;--ok-d:#2A9A6E;--ok-s:#DDF6EA;--bad:#E5484D;--bad-s:#FFE3E3;color-scheme:light}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:18px;line-height:1.55;font-weight:600;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:800;line-height:1.06;letter-spacing:-.02em;margin:0;text-wrap:balance}
+p{margin:0}a{color:inherit}img,svg{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+em{font-style:italic;color:var(--fox-d)}
+.dark em{color:var(--sun)}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--fox-d);margin-bottom:14px}
+.dark .eyebrow{color:var(--sun)}
+/* chunky duolingo buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:18px;padding:15px 28px;font:800 16px 'Nunito',sans-serif;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;background:var(--leaf);color:#fff;box-shadow:0 5px 0 var(--leaf-d);transition:transform .08s,box-shadow .08s}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--leaf-d)}
+.btn.fox{background:var(--fox);box-shadow:0 5px 0 var(--fox-d)}
+.btn.fox:active{box-shadow:0 1px 0 var(--fox-d)}
+.btn.line{background:#fff;color:var(--sky-d);box-shadow:0 5px 0 var(--line),inset 0 0 0 2px var(--line)}
+.btn.line:active{box-shadow:0 1px 0 var(--line),inset 0 0 0 2px var(--line)}
+.btn.sm{padding:11px 20px;font-size:14px;border-radius:14px;box-shadow:0 4px 0 var(--leaf-d)}
+.btn[disabled]{background:#E7DACB;color:#B5A290;box-shadow:0 5px 0 #D5C6B3;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--sky-d);outline-offset:3px}
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,246,249,.92);backdrop-filter:blur(12px);border-bottom:2px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:76px}
+.logo{display:flex;align-items:center;gap:10px;font:800 28px 'Fraunces',serif;text-decoration:none;letter-spacing:-.03em;color:var(--fox-d)}
+.logo svg{width:40px;height:40px}
+.nav nav{display:flex;gap:26px;flex:1}
+.nav nav a{text-decoration:none;font-weight:700;font-size:16px;color:var(--ink)}
+.nav nav a:hover{color:var(--fox-d)}
+.burger{display:none;width:46px;height:46px;border-radius:14px;border:2px solid var(--line);background:#fff;cursor:pointer;margin-left:auto}
+.burger i{display:block;width:18px;height:2.5px;background:var(--ink);margin:4px auto;border-radius:2px}
+/* hero */
+.hero{padding:64px 0 90px;position:relative;overflow-x:clip}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(42px,6vw,76px)}
+.hero p.lead{font-size:20px;color:var(--muted);margin:22px 0 28px;max-width:30em}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.langs{margin-top:34px}
+.langs small{display:block;font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font:800 15px 'Nunito',sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--line);transition:transform .08s}
+.chip:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.chip[aria-pressed="true"]{background:var(--sky);border-color:var(--sky-d);box-shadow:0 3px 0 var(--sky-d);color:#4A2AA0}
+.stage{position:relative;min-height:440px;display:grid;place-items:center;background:#FFDCEA;border-radius:44px;box-shadow:inset 0 0 0 3px #FFBFD6;overflow:hidden}
+.stage:before{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;background:#FFC2D8;border-radius:0 0 44px 44px}
+.stage:after{content:"";position:absolute;left:-6%;right:-6%;bottom:26%;height:70px;background:#FFC2D8;border-radius:50% 50% 0 0}
+.fox{position:relative;z-index:2;width:min(330px,72%);animation:bob 5s ease-in-out infinite}
+.fox svg{width:100%;height:auto;display:block;overflow:visible}
+.pet{transform-origin:100px 100px;animation:spin 18s linear infinite}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.08)}}
+.bub{position:absolute;z-index:3;background:#fff;color:var(--ink);border-radius:22px;padding:12px 20px;font-weight:800;font-size:18px;box-shadow:0 5px 0 rgba(58,36,24,.12);line-height:1.3;max-width:70%}
+.bub:after{content:"";position:absolute;width:18px;height:18px;background:#fff;transform:rotate(45deg);border-radius:3px;z-index:-1}
+.bub.one{left:5%;top:9%;transform:rotate(-3deg);font-size:26px;font-family:'Fraunces',serif}
+.bub.one:after{bottom:-7px;left:44px}
+.bub.two{right:4%;bottom:5%;max-width:62%;background:var(--sun);transform:rotate(2deg);font-size:16px}
+.bub.two:after{background:var(--sun);top:-7px;right:38px}
+.pop{position:absolute;z-index:3;right:8%;top:13%;background:#fff;border-radius:16px;padding:8px 14px;font-weight:800;font-size:15px;color:var(--fox-d);box-shadow:0 4px 0 rgba(58,36,24,.12);transform:rotate(4deg)}
+/* sections */
+section{padding:96px 0}
+section.alt{background:var(--cream2)}
+section.dark{background:var(--plum);color:#fff}
+section h2{font-size:clamp(34px,4.4vw,56px)}
+.head{max-width:720px;margin-bottom:46px}
+.head p{color:var(--muted);margin-top:16px;font-size:19px}
+.dark .head p{color:#D9C6D3}
+/* lesson */
+.lesson-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.phone{background:#fff;border-radius:34px;box-shadow:0 8px 0 var(--line),0 30px 60px -30px rgba(58,36,24,.35);border:2px solid var(--line);overflow:hidden;max-width:470px;margin:0 auto;width:100%}
+.ph-top{display:flex;align-items:center;gap:14px;padding:20px 22px 8px}
+.bar{flex:1;height:16px;background:#EADFD2;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--leaf);border-radius:99px;transition:width .4s;position:relative}
+.bar i:after{content:"";position:absolute;left:8px;right:8px;top:3px;height:4px;background:rgba(255,255,255,.45);border-radius:4px}
+.hearts{font-weight:800;color:var(--bad);white-space:nowrap}
+.ph-body{padding:14px 24px 22px;min-height:360px}
+.q-tag{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-d)}
+.q{font:800 26px 'Fraunces',serif;margin:6px 0 18px;line-height:1.15}
+.ask{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.ask svg{width:74px;flex:none}
+.ask .bb{border:2px solid var(--line);border-radius:18px;padding:12px 16px;font-weight:800;font-size:19px;position:relative}
+.opts{display:grid;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;border:2px solid var(--line);border-radius:16px;padding:14px 16px;background:#fff;font:800 18px 'Nunito',sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 var(--line)}
+.opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.opt b{width:30px;height:30px;border-radius:9px;border:2px solid var(--line);display:grid;place-items:center;font-size:14px;color:var(--muted);flex:none}
+.opt.sel{background:var(--sky);border-color:var(--sky-d);box-shadow:0 4px 0 var(--sky-d)}
+.opt.sel b{border-color:var(--sky-d);color:#4A2AA0}
+.opt.right{background:var(--ok-s);border-color:var(--ok);box-shadow:0 4px 0 var(--ok)}
+.opt.wrong{background:var(--bad-s);border-color:var(--bad);box-shadow:0 4px 0 var(--bad)}
+.opt[disabled]{pointer-events:none}
+.foot{border-top:2px solid var(--line);padding:18px 24px 22px;transition:background .2s}
+.foot.ok{background:var(--ok-s)}.foot.no{background:var(--bad-s)}
+.fb{display:none;font-weight:800;margin-bottom:12px}
+.foot.ok .fb{display:block;color:var(--ok-d)}.foot.no .fb{display:block;color:var(--bad)}
+.foot .btn{width:100%}
+.foot.no .btn{background:var(--bad);box-shadow:0 5px 0 #B3262B}
+.done-card{text-align:center;padding:20px 6px}
+.done-card svg{width:150px}
+.done-card h3{font-size:32px;margin:8px 0}
+.done-card .xp{display:flex;gap:12px;justify-content:center;margin:18px 0}
+.done-card .xp span{border:2px solid var(--sun);background:#FFF0E2;border-radius:14px;padding:8px 16px;font-weight:800;color:#9A4A12}
+.lesson-copy ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:16px}
+.lesson-copy li{display:flex;gap:14px;align-items:flex-start;color:var(--muted)}
+.lesson-copy li b{color:var(--ink)}
+.tick{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:16px;margin-top:2px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+.step{background:#fff;border:2px solid var(--line);border-radius:28px;padding:30px;box-shadow:0 6px 0 var(--line);counter-increment:s}
+.step:before{content:counter(s);display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--fox);color:#fff;font:800 22px 'Fraunces',serif;margin-bottom:18px;box-shadow:0 4px 0 var(--fox-d)}
+.step h3{font-size:25px;margin-bottom:10px}
+.step p{color:var(--muted)}
+/* languages */
+.lgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.lang{background:#fff;border:2px solid var(--line);border-radius:24px;padding:22px;display:flex;align-items:center;gap:16px;box-shadow:0 5px 0 var(--line)}
+.lang .g{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font:800 22px 'Fraunces',serif;flex:none}
+.lang h4{font-size:22px}.lang span{font-size:15px;color:var(--muted)}
+.c1{background:#FFD9C2;color:#B6420B}.c2{background:#CDE9FF;color:#14578C}.c3{background:#D8F3DC;color:#1F7A33}.c4{background:#FFE8A6;color:#9A4A12}.c5{background:#EBD9FF;color:#5E2BA3}.c6{background:#FFD3DE;color:#A3123F}
+/* streak */
+.streak{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.week{display:flex;gap:10px;margin:28px 0}
+.day{flex:1;text-align:center;font-weight:800;font-size:13px;color:#D9C6D3}
+.day i{display:grid;place-items:center;height:52px;border-radius:16px;margin-bottom:8px;background:var(--plum2);font-style:normal;font-size:22px}
+.day.on i{background:var(--fox)}
+.day.today i{background:var(--sun);box-shadow:0 0 0 4px rgba(255,209,102,.3)}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.num{background:var(--plum2);border-radius:20px;padding:20px}
+.num b{display:block;font:800 36px 'Fraunces',serif;color:var(--sun)}
+.num span{font-size:14px;color:#D9C6D3}
+/* stories */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{background:#fff;border:2px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 6px 0 var(--line);display:flex;flex-direction:column;gap:18px}
+.quote p{font-size:19px;line-height:1.5}
+.who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px}
+.who b{display:block;line-height:1.2}.who span{font-size:14px;color:var(--muted)}
+/* pricing */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px}
+.plan{background:#fff;border:2px solid var(--line);border-radius:30px;padding:34px;box-shadow:0 7px 0 var(--line);display:flex;flex-direction:column;gap:16px}
+.plan.pro{border-color:var(--fox);box-shadow:0 7px 0 var(--fox-d)}
+.plan .tag{align-self:flex-start;background:var(--fox);color:#fff;border-radius:99px;padding:4px 14px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.plan h3{font-size:28px}
+.price{font:800 46px 'Fraunces',serif}.price small{font:700 16px 'Nunito',sans-serif;color:var(--muted)}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;color:var(--muted)}
+.plan li:before{content:"✓";color:var(--ok-d);font-weight:800;margin-right:10px}
+.plan .btn{margin-top:auto}
+/* faq */
+.faq{max-width:820px}
+details{background:#fff;border:2px solid var(--line);border-radius:20px;margin-bottom:12px;box-shadow:0 4px 0 var(--line)}
+summary{cursor:pointer;padding:20px 24px;font:800 20px 'Fraunces',serif;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font:800 26px 'Nunito';color:var(--fox-d);line-height:1}
+details[open] summary:after{content:"–"}
+details p{padding:0 24px 22px;color:var(--muted)}
+/* join */
+.join .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.join h2{color:#fff}
+.join p.lead{color:#D9C6D3;margin:16px 0 0;font-size:19px}
+.signup{background:var(--plum2);border-radius:30px;padding:30px;display:grid;gap:14px}
+.signup label{font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--sun)}
+.signup input,.signup select{width:100%;border:2px solid #5A3F54;background:var(--plum);color:#fff;border-radius:16px;padding:15px 16px;font:700 17px 'Nunito',sans-serif}
+.signup input::placeholder{color:#A58C9F}
+.signup input:focus,.signup select:focus{outline:none;border-color:var(--sun)}
+.signup .ok{display:none;text-align:center;padding:16px 6px}
+.signup .ok h3{color:#fff;font-size:30px;margin:10px 0}
+.foxsmall{width:120px;margin:0 auto}
+/* footer */
+footer{background:var(--plum);color:#D9C6D3;padding:50px 0 60px;border-top:2px solid var(--plum2)}
+footer .wrap{display:flex;gap:30px;justify-content:space-between;flex-wrap:wrap;align-items:flex-start}
+footer .logo{color:var(--sun)}
+footer p{font-size:14px;max-width:420px;margin-top:12px}
+footer nav{display:flex;gap:22px;flex-wrap:wrap}
+footer nav a{text-decoration:none;font-weight:700}
+footer nav a:hover{color:#fff}
+@media (prefers-reduced-motion:reduce){.fox,.pet,.eye{animation:none}html{scroll-behavior:auto}}
+@media (max-width:900px){
+ .nav nav{display:none;position:absolute;top:76px;left:0;right:0;background:var(--cream);flex-direction:column;gap:0;padding:8px 20px 18px;border-bottom:2px solid var(--line)}
+ .nav nav.open{display:flex}.nav nav a{padding:14px 0;border-bottom:2px solid var(--line)}
+ .nav .btn.sm{display:none}.burger{display:block}
+ .hero .wrap,.lesson-grid,.streak,.join .wrap{grid-template-columns:1fr}
+ .hero{padding-top:36px}.stage{min-height:380px}
+ .steps,.cards,.lgrid,.plans{grid-template-columns:1fr}
+ section{padding:70px 0}
+ .nums{grid-template-columns:1fr 1fr 1fr}
+}
+@media (max-width:480px){.num b{font-size:28px}.bub.one{font-size:21px}.pop{display:none}.week{gap:6px}}
+
+.pcard{background:#fff;border:2px solid var(--line);border-radius:28px;padding:30px;box-shadow:0 6px 0 var(--line)}
+.habits{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.habit .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;font-size:30px;margin-bottom:18px}
+.habit h3{font-size:26px;margin-bottom:10px}.habit p{color:var(--muted)}
+.habit .when{display:inline-block;margin-top:16px;background:var(--fox-s);color:var(--fox-d);border-radius:99px;padding:4px 14px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.guide-step{display:flex;gap:16px;align-items:flex-start;margin:6px 0 16px}
+.guide-step .n{flex:none;width:44px;height:44px;border-radius:14px;background:var(--leaf);color:#fff;display:grid;place-items:center;font:800 22px 'Fraunces',serif;box-shadow:0 4px 0 var(--leaf-d)}
+.guide-art{background:var(--cream2);border-radius:22px;display:grid;place-items:center;padding:14px;margin:6px 0 16px}
+.guide-art svg{width:110px;height:auto}
+.dots{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
+.dots i{width:10px;height:10px;border-radius:50%;background:#EBD3DE}.dots i.on{background:var(--leaf)}
+.months{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:26px 0}
+.mo{border:2px solid var(--line);background:#fff;border-radius:18px;padding:14px 4px;font:800 15px 'Nunito',sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 var(--line);display:grid;gap:4px;place-items:center}
+.mo span{font-size:20px;line-height:1;color:#E8C9D6}
+.mo[aria-pressed="true"]{background:var(--leaf-s);border-color:var(--leaf);box-shadow:0 4px 0 var(--leaf)}
+.mo[aria-pressed="true"] span{color:var(--leaf-d)}
+.mo:active{transform:translateY(3px)}
+.counter{font:800 30px 'Fraunces',serif}.counter small{font:700 16px 'Nunito',sans-serif;color:var(--muted)}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+.mam select{width:100%;border:2px solid var(--line);border-radius:16px;padding:14px 16px;font:700 17px 'Nunito',sans-serif;background:#fff;color:var(--ink);margin:12px 0}
+.mam .res{background:var(--cream2);border-radius:16px;padding:14px 16px;font-weight:800;min-height:3.2em}
+.tipcard{background:var(--plum2);border-radius:30px;padding:34px;min-height:290px;display:flex;flex-direction:column;gap:14px}
+.tipcard .tg{align-self:flex-start;background:var(--sun);color:#7A3B0E;border-radius:99px;padding:4px 14px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.tipcard h3{font-size:34px;color:#fff}.tipcard p{color:#F0D5E3}
+.tipcard .row{display:flex;gap:12px;margin-top:auto;flex-wrap:wrap}
+.btn.peach{background:var(--sun);color:#6B3008;box-shadow:0 5px 0 #E39A63}
+.btn.peach:active{box-shadow:0 1px 0 #E39A63}
+.btn.ghost2{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #7C4468}
+.btn.ghost2:active{box-shadow:inset 0 0 0 2px #7C4468}
+.btn.ok{background:var(--ok);box-shadow:0 5px 0 var(--ok-d)}
+.signs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+.sign{background:#fff;border:2px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 5px 0 var(--line)}
+.sign b{display:block;font:800 21px 'Fraunces',serif;margin-bottom:6px}.sign span{color:var(--muted);font-size:16px}
+.note{background:var(--leaf-s);border:2px solid var(--leaf);border-radius:22px;padding:22px 26px;font-weight:700}
+@media (max-width:900px){.habits,.signs,.two{grid-template-columns:1fr}.months{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:480px){.months{grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<header class="nav" id="nav"><div class="wrap">
+ <a class="logo" href="#top" aria-label="Petal home"><span data-pet="static" style="display:block;width:40px;height:40px"></span>petal</a>
+ <nav id="menu" aria-label="Main">
+  <a href="#habits">3 habits</a><a href="#check">Self check</a><a href="#year">Your year</a><a href="#tips">Daily tips</a><a href="#faq">FAQ</a>
+ </nav>
+ <a class="btn sm" href="#join">Get reminders</a>
+ <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+ <div>
+  <div class="eyebrow">Breast health, made easy</div>
+  <h1>Look after yourself, <em>gently.</em></h1>
+  <p class="lead">A monthly check, a yearly mammogram and one small tip a day. Petal keeps track so you do not have to, and cheers you on the whole way.</p>
+  <div class="cta"><a class="btn" href="#join">Get reminders</a><a class="btn line" href="#check">Try a self check</a></div>
+  <div class="langs"><small>Petal reminds you about</small>
+   <div class="chips" id="chips" role="group" aria-label="Pick a habit"></div></div>
+ </div>
+ <div class="stage" aria-label="Petal the flower">
+  <div class="bub one" id="hello" aria-live="polite">Hi, you!</div>
+  <div class="pop">+1 check</div>
+  <div class="fox" id="heroPet" role="img" aria-label="Petal, a friendly pink flower mascot"></div>
+  <div class="bub two" id="hellosub">Ready for a quick check-in?</div>
+ </div>
+</div></section>
+
+<section class="alt" id="habits"><div class="wrap">
+ <div class="head"><div class="eyebrow">Three small habits</div><h2>Easy to start. <em>Easy to keep.</em></h2><p>Catching changes early gives you the best chance. These three habits take almost no time.</p></div>
+ <div class="habits">
+  <div class="pcard habit"><div class="ic" style="background:#FFD9E7">🪞</div><h3>Monthly self check</h3><p>Five minutes, once a month. Get to know how your breasts normally look and feel, so you spot anything new fast.</p><span class="when">Every month</span></div>
+  <div class="pcard habit"><div class="ic" style="background:#EADFFF">🩺</div><h3>Yearly mammogram</h3><p>A screening scan that can find changes before you can feel them. Petal reminds you to book it and keeps your dates in one place.</p><span class="when">Ask your doctor when to start</span></div>
+  <div class="pcard habit"><div class="ic" style="background:#FFE5CF">🌸</div><h3>Daily tip</h3><p>One small habit linked to lower risk, like a walk or a glass of water instead of a drink. Tick it off and keep your streak.</p><span class="when">Every day</span></div>
+ </div>
+</div></section>
+
+<section id="check"><div class="wrap lesson-grid">
+ <div class="lesson-copy">
+  <div class="eyebrow">Try it right now</div>
+  <h2>A self check in <em>four easy steps.</em></h2>
+  <p style="color:var(--muted);margin-top:16px">Tap through the guide. Pick a day each month, like the first Sunday, and make it a habit. There is no wrong way to start.</p>
+  <ul>
+   <li><span class="tick">✓</span><span><b>Know your normal.</b> Everyone is different. You are looking for what is new for you.</span></li>
+   <li><span class="tick">✓</span><span><b>Takes five minutes.</b> In the mirror, in the shower, or lying down.</span></li>
+   <li><span class="tick">✓</span><span><b>Changes are not a verdict.</b> Most are not cancer. Get anything new checked anyway.</span></li>
+  </ul>
+ </div>
+ <div class="phone" id="phone">
+  <div class="ph-top"><div class="bar"><i id="prog"></i></div><div class="hearts" id="step">1 / 4</div></div>
+  <div id="gbox"></div>
+ </div>
+</div></section>
+
+<section class="alt" id="year"><div class="wrap">
+ <div class="head"><div class="eyebrow">Your year</div><h2>Twelve checks. <em>One pink year.</em></h2><p>Tap a month when you have done your check. Petal fills it in and keeps count.</p></div>
+ <div class="two">
+  <div class="pcard">
+   <div class="counter" id="count">0 <small>of 12 checks done</small></div>
+   <div class="months" id="months"></div>
+   <div class="bar"><i id="yprog" style="width:0"></i></div>
+  </div>
+  <div class="pcard mam">
+   <div class="eyebrow">Yearly mammogram</div>
+   <h3 style="font-size:28px">When is yours?</h3>
+   <p style="color:var(--muted);margin-top:8px">Pick the month and Petal will nudge you two weeks before.</p>
+   <label for="mm" style="position:absolute;left:-9999px">Mammogram month</label>
+   <select id="mm"><option value="">Choose a month</option></select>
+   <div class="res" id="mres" aria-live="polite">Not booked yet. No rush, just pick a month.</div>
+   <p style="color:var(--muted);font-size:15px;margin-top:14px">How often and from what age depends on your age, family history and your country. Your doctor can tell you what is right for you.</p>
+  </div>
+ </div>
+</div></section>
+
+<section class="dark" id="tips"><div class="wrap streak">
+ <div>
+  <div class="eyebrow">Daily tips</div>
+  <h2>Small habits that may <em>lower your risk.</em></h2>
+  <p style="color:#F0D5E3;margin-top:18px">One tip a day. Do it, tick it, and watch your streak grow. Nothing guarantees prevention, but healthy habits help, and they feel good too.</p>
+  <div class="nums" style="margin-top:28px">
+   <div class="num"><b id="streak">0</b><span>day streak</span></div>
+   <div class="num"><b>1</b><span>tip a day</span></div>
+   <div class="num"><b>5 min</b><span>or less</span></div>
+  </div>
+ </div>
+ <div class="tipcard" id="tipcard" aria-live="polite"></div>
+</div></section>
+
+<section id="signs"><div class="wrap">
+ <div class="head"><div class="eyebrow">What to look for</div><h2>Know the <em>signs.</em></h2><p>These are changes worth telling a doctor about. Most turn out to be something else, and checking is always the right call.</p></div>
+ <div class="signs">
+  <div class="sign"><b>A new lump</b><span>In the breast or under the arm, hard or thick compared with the rest.</span></div>
+  <div class="sign"><b>Shape or size</b><span>One breast looks different from before, or swells.</span></div>
+  <div class="sign"><b>Skin changes</b><span>Dimpling, puckering, redness or an orange peel look.</span></div>
+  <div class="sign"><b>Nipple changes</b><span>Turning inward, a rash, or new fluid that is not milk.</span></div>
+  <div class="sign"><b>Pain that stays</b><span>Ongoing pain in one spot that does not come and go with your cycle.</span></div>
+  <div class="sign"><b>Anything new</b><span>If it is new and it worries you, that is reason enough to book.</span></div>
+ </div>
+ <div class="note">Petal is a reminder app and does not give diagnoses or medical advice. If you notice a change, please see a doctor.</div>
+</div></section>
+
+<section class="alt" id="faq"><div class="wrap">
+ <div class="head"><div class="eyebrow">Questions</div><h2>Good <em>questions.</em></h2></div>
+ <div class="faq">
+  <details><summary>Does a self check replace a mammogram?</summary><p>No. They do different jobs. A self check helps you notice changes between screenings. A mammogram can find changes before you can feel them.</p></details>
+  <details><summary>When should I start having mammograms?</summary><p>It depends on your age, family history and where you live, and guidelines differ. Ask your doctor what is right for you.</p></details>
+  <details><summary>I found a lump. Is it cancer?</summary><p>Most breast lumps are not cancer. But only a doctor can tell, so please book an appointment soon rather than waiting.</p></details>
+  <details><summary>Is this only for women?</summary><p>Anyone can have breast tissue, and men can get breast cancer too, though it is much rarer. The habits and signs apply to everyone.</p></details>
+  <details><summary>Can these tips guarantee I will not get cancer?</summary><p>No. Some habits are linked to lower risk, but nothing can promise prevention. Think of tips as stacking the odds in your favour.</p></details>
+ </div>
+</div></section>
+
+<section class="dark join" id="join"><div class="wrap">
+ <div>
+  <div class="eyebrow">Ready?</div>
+  <h2>Let Petal <em>remind you.</em></h2>
+  <p class="lead">Pick the day you want your monthly nudge. We will do the remembering.</p>
+ </div>
+ <form class="signup" id="signup" novalidate>
+  <label for="em">Email</label><input id="em" type="email" placeholder="you@email.com" autocomplete="email" required>
+  <label for="dy">Remind me on</label>
+  <select id="dy"><option>The 1st of the month</option><option>The first Sunday</option><option>The 15th</option><option>The last day of the month</option></select>
+  <button class="btn fox" type="submit">Get reminders</button>
+  <div id="err" style="color:#FFB4B4;font-weight:800;min-height:1.2em" role="alert"></div>
+  <div class="ok" id="ok"><div class="foxsmall" data-pet="static"></div><h3>You are all set!</h3><p style="color:#F0D5E3">Petal will see you next month. Be kind to yourself.</p></div>
+ </form>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <div><a class="logo" href="#top"><span data-pet="static" style="display:block;width:40px;height:40px"></span>petal</a>
+ <p>Petal is a fictional company and does not give medical advice. A fictional project by Aliza Munir.</p></div>
+ <nav aria-label="Footer"><a href="#habits">3 habits</a><a href="#check">Self check</a><a href="#year">Your year</a><a href="#tips">Daily tips</a><a href="#faq">FAQ</a></nav>
+</div></footer>
+
+<script>
+var $=function(s,r){return (r||document).querySelector(s)};
+function pet(anim){var p='';for(var i=0;i<8;i++)p+='<ellipse cx="100" cy="44" rx="25" ry="40" fill="'+(i%2?'#FF8FB8':'#F0518A')+'" transform="rotate('+(i*45)+' 100 100)"/>';
+ return '<svg viewBox="0 0 200 200" aria-hidden="true"><g'+(anim?' class="pet"':'')+'>'+p+'</g><circle cx="100" cy="100" r="50" fill="#FFE3C8"/>'
+ +'<ellipse class="eye" cx="82" cy="94" rx="6" ry="8" fill="#3B1A2B"/><ellipse class="eye" cx="118" cy="94" rx="6" ry="8" fill="#3B1A2B"/>'
+ +'<circle cx="84" cy="91" r="2.4" fill="#fff"/><circle cx="120" cy="91" r="2.4" fill="#fff"/>'
+ +'<ellipse cx="72" cy="110" rx="8" ry="5" fill="#FF8FB8" opacity=".6"/><ellipse cx="128" cy="110" rx="8" ry="5" fill="#FF8FB8" opacity=".6"/>'
+ +'<path d="M88 112Q100 126 112 112" stroke="#3B1A2B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>'}
+$('#heroPet').innerHTML=pet(true);
+[].forEach.call(document.querySelectorAll('[data-pet]'),function(e){e.innerHTML=pet(false)});
+/* hero chips */
+var H=[['Self check','Hi, you!','Ready for a quick check-in?'],['Mammogram','Time to book?','A yearly scan, on your calendar.'],['Daily tip','One tiny thing.','Today: a ten minute walk.']];
+var chips=$('#chips');
+H.forEach(function(g,i){var b=document.createElement('button');b.className='chip';b.type='button';b.textContent=g[0];b.setAttribute('aria-pressed',i===0?'true':'false');
+ b.onclick=function(){[].forEach.call(chips.children,function(c){c.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');$('#hello').textContent=g[1];$('#hellosub').textContent=g[2]};chips.appendChild(b)});
+/* guide */
+var S=[
+ {t:'Look in the mirror',d:'Stand with your arms relaxed by your sides. Then raise them overhead. Look at the shape, size and colour of each breast, and at the skin and nipples.',e:'🪞'},
+ {t:'Feel while standing',d:'Use the flat pads of your three middle fingers. Move in small circles, light then firm, covering the whole breast, up to the collarbone and into the armpit. The shower works well.',e:'🚿'},
+ {t:'Feel lying down',d:'Lie on your back with one arm behind your head. Repeat the same small circles on that side, then swap. Lying flat spreads the tissue so it is easier to feel.',e:'🛏️'},
+ {t:'Know what to do',d:'Noticed something new, like a lump, dimpling or fluid? Do not panic and do not wait. Book a visit with your doctor. Most changes are not cancer, but you deserve to be sure.',e:'💗'}
+];
+var gi=0,gbox=$('#gbox');
+function guide(){
+ if(gi>=S.length){
+  $('#prog').style.width='100%';$('#step').textContent='Done';
+  gbox.innerHTML='<div class="ph-body"><div class="done-card"><div style="width:150px;margin:0 auto">'+pet(true)+'</div><h3>Check done!</h3><p style="color:var(--muted)">Petal logged it for this month. Nicely done.</p><div class="xp"><span>🌸 1 check</span><span>🔥 1 month streak</span></div></div></div><div class="foot"><button class="btn" id="again">Go again</button></div>';
+  $('#again').onclick=function(){gi=0;guide()};return}
+ var s=S[gi],dots='';for(var i=0;i<S.length;i++)dots+='<i class="'+(i<=gi?'on':'')+'"></i>';
+ $('#prog').style.width=(gi/S.length*100)+'%';$('#step').textContent=(gi+1)+' / '+S.length;
+ gbox.innerHTML='<div class="ph-body"><div class="q-tag">Step '+(gi+1)+'</div><div class="q">'+s.t+'</div><div class="guide-art"><span style="font-size:70px;line-height:1.2" aria-hidden="true">'+s.e+'</span></div><p style="color:var(--muted)">'+s.d+'</p></div><div class="foot"><div class="dots">'+dots+'</div><button class="btn" id="nx">'+(gi===S.length-1?'Finish':'Next')+'</button></div>';
+ $('#nx').onclick=function(){gi++;guide()};
+}
+guide();
+/* year */
+var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],mon=$('#months'),mm=$('#mm');
+M.forEach(function(m,i){var b=document.createElement('button');b.type='button';b.className='mo';b.setAttribute('aria-pressed','false');b.innerHTML=m+'<span>✿</span>';
+ b.onclick=function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');var n=mon.querySelectorAll('[aria-pressed="true"]').length;$('#count').innerHTML=n+' <small>of 12 checks done</small>';$('#yprog').style.width=(n/12*100)+'%'};mon.appendChild(b);
+ var o=document.createElement('option');o.value=m;o.textContent=['January','February','March','April','May','June','July','August','September','October','November','December'][i];mm.appendChild(o)});
+mm.onchange=function(){$('#mres').textContent=mm.value?'Booked for '+mm.options[mm.selectedIndex].text+'. Petal will nudge you two weeks before.':'Not booked yet. No rush, just pick a month.'};
+/* tips */
+var T=[['Move','Take a ten minute walk','Regular activity is linked to lower breast cancer risk. A walk counts, and it will lift your mood too.'],['Sip','Swap one drink for water','The less alcohol, the lower the risk. Try a sparkling water with lime tonight.'],['Sleep','Aim for a calm wind down','Good sleep helps your body and your habits. Screens off, lights low, early night.'],['Eat','Add one colourful plate','Fruit, veg, beans and whole grains. Aim for a rainbow at your next meal.'],['Stretch','Do five minutes of gentle moves','Keeping active does not need a gym. Dance in the kitchen, it counts.'],['Know','Do your monthly check','If it is check day, put on a song and give it five minutes. Future you says thanks.'],['Smoke-free','Skip the cigarette, or ask for help','Quitting helps almost every part of your health. Ask your doctor about support.']];
+var ti=0,done=false,streak=0;
+function tip(){var t=T[ti];$('#tipcard').innerHTML='<span class="tg">'+t[0]+'</span><h3>'+t[1]+'</h3><p>'+t[2]+'</p><div class="row"><button class="btn peach" id="td">'+(done?'Done!':'I did it')+'</button><button class="btn ghost2" id="tn">Next tip</button></div>';
+ $('#td').onclick=function(){if(!done){done=true;streak++;$('#streak').textContent=streak;this.textContent='Done!';this.className='btn ok'}};
+ $('#tn').onclick=function(){ti=(ti+1)%T.length;done=false;tip()}}
+tip();
+/* nav + signup */
+var burger=$('#burger'),menu=$('#menu');
+burger.onclick=function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)};
+[].forEach.call(menu.querySelectorAll('a'),function(a){a.onclick=function(){menu.classList.remove('open');burger.setAttribute('aria-expanded','false')}});
+$('#signup').addEventListener('submit',function(e){e.preventDefault();var em=$('#em');
+ if(!em.checkValidity()||!em.value.trim()){$('#err').textContent='Add a real email so Petal can find you.';em.focus();return}
+ $('#err').textContent='';[].forEach.call(this.children,function(c){if(c.id!=='ok')c.style.display='none'});$('#ok').style.display='block'});
+</script>
+</body></html>
